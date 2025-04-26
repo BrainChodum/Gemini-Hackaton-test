@@ -23,6 +23,15 @@ Do NOT include any other text, explanations, or pleasantries no matter what i as
 
 
 )"; // Using Raw String Literal (R"()") for easier multiline strings with {} placeholder
+String ultrasonic_prompt_ = R"(
+    You have received an ultrasonic sensor reading. Explain the distance in simple terms.
+    Relate the distance to common objects or scenarios if possible.
+    Format sensor explanations clearly.
+    Do NOT provide LED commands in response to a sensor reading.
+    
+    Sensor reading: {} cm.
+    Explanation:
+    )"; // Using Raw String Literal (R"()") for easier multiline strings with {} placeholder
 
 // --- Arduino Pin Definitions ---
 // Defined here in main.cpp
@@ -122,7 +131,6 @@ void loop() {
 
 void LED_Control(String response) {
     // Convert the Gemini response to lowercase for case-insensitive matching
-    response.toLowerCase();
 
     // Check if the response exactly matches the command string after lowercasing
     if (response.equals("LED_ON\n")) {
